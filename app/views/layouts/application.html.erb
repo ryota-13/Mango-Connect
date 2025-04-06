@@ -10,7 +10,16 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <%= yield %>
+  <body class="d-flex flex-column min-vh-100">
+    <%= render 'layouts/header' %>  <!-- ヘッダーを表示 -->
+    <div class="container flex-grow-1">
+      <%= yield %>  <!-- 各ページのコンテンツ -->
+    </div>
+
+    <footer class="bg-dark text-white text-center py-4 mt-4">
+      <p>&copy; 2025 Mango Connect. All rights reserved.</p>
+    </footer>
   </body>
+
+
 </html>

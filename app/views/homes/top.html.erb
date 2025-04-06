@@ -1,0 +1,28 @@
+<h1>Mango Connect - トップページ</h1>
+
+<!-- 新規投稿ボタン -->
+<%= link_to '新規投稿', new_post_path, class: 'btn btn-primary' %>
+
+<!-- マイページボタン -->
+<% if current_user %>
+  <%= link_to 'マイページ', user_path(current_user), class: 'btn btn-secondary' %>
+<% end %>
+
+
+<!-- 投稿一覧 -->
+<h2>投稿一覧</h2>
+
+<% @posts.each do |post| %>
+  <div class="post">
+    <h3><%= link_to post.title, post_path(post) %></h3>
+
+    <% if post.image.attached? %>
+      <!-- 画像があれば表示 -->
+      <%= image_tag post.image, style: "max-width: 300px; height: auto;" %>
+    <% end %>
+
+    <p><%= post.body.truncate(100) %></p>
+    <p>投稿者: <%= post.user.name %></p>
+  </div>
+<% end %>
+
