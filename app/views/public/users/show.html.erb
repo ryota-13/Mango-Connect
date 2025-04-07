@@ -1,2 +1,31 @@
-<h1>Public::Users#show</h1>
-<p>Find me in app/views/public/users/show.html.erb</p>
+<h1><%= @user.name %>さんのプロフィール</h1>
+
+<div class="profile-info">
+  <div class="profile-image">
+    <%= image_tag @user.image.attached? ? url_for(@user.image) : asset_path('no.image.jpg'), alt: 'プロフィール画像', class: 'img-thumbnail' %>
+  </div>
+  <div class="profile-details">
+    <p><strong>自己紹介:</strong> <%= @user.profile.present? ? @user.profile : "自己紹介がありません" %></p>
+    <p><strong>Email:</strong> <%= @user.email %></p>
+  </div>
+  <% if @user == current_user %>
+    <%= link_to 'プロフィール編集', edit_user_path(@user), class: 'btn btn-primary' %>
+  <% end %>
+</div>
+
+<h2>投稿一覧</h2>
+<%= link_to '新規投稿', new_post_path, class: 'btn btn-success' %>
+
+<% if @posts.present? %>
+  <div class="posts-list">
+    <% @posts.each do |post| %>
+      <div class="post-item">
+        <h3><%= link_to post.title, post_path(post) %></h3>
+        <p><%= truncate(post.body, length: 100) %></p>
+        <%= link_to '詳細', post_path(post), class: 'btn btn-info' %>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <p>このユーザーの投稿はまだありません。</p>
+<% end %>

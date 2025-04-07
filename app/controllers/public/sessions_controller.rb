@@ -11,7 +11,6 @@ class Public::SessionsController < Devise::SessionsController
     root_path  # トップページに遷移
   end
 
-
   # GET /resource/sign_in
   # def new
   #   super

@@ -1,2 +1,29 @@
-<h1>Public::Users#edit</h1>
-<p>Find me in app/views/public/users/edit.html.erb</p>
+<h1>プロフィール編集</h1>
+<%= form_for(current_user, url: user_path(current_user), html: { method: :patch, enctype: "multipart/form-data" }) do |f| %>
+
+  <div>
+    <%= f.label :image, "プロフィール画像" %>
+    <%= f.file_field :image %>
+    <% if current_user.image.attached? %>
+      <%= image_tag url_for(current_user.image) %>
+    <% end %>
+  </div>
+
+  <div>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div>
+    <%= f.label :profile %>
+    <%= f.text_area :profile %>
+  </div>
+
+  <div>
+    <%= f.submit '更新する' %>
+  </div>
+<% end %>
+
+<%= link_to '戻る', mypage_path %>
+
+<%= link_to '退会する', user_path(current_user), method: :delete, data: { confirm: '本当に退会しますか？' } %>
