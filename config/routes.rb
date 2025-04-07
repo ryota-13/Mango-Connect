@@ -1,43 +1,48 @@
 Rails.application.routes.draw do
 
   # ユーザー認証
-  devise_for :users, only: [:sessions, :registrations], path: '', path_names: {
-    sign_in: 'sign_in',
-    sign_out: 'sign_out',
-    sign_up: 'sign_up'
+  devise_for :users, skip: [:passwords], controllers: {
+    sessions: 'public/sessions',
+    registrations: 'public/registrations'
   }
 
-  post 'users/guest_sign_in', to: 'users#guest_sign_in', as: 'user_guest_sign_in'
+  # 管理者認証
+  devise_for :admin, skip: [:registrations, :passwords], controllers: {
+    sessions: 'admin/sessions'
+  }
 
+  # Public側
+  scope module: :public do
+    # トップページ・その他ページ
+    root 'homes#top'
+    get 'about', to: 'homes#about'
+    get 'search', to: 'searches#index'
+    get 'mypage', to: 'users#mypage'
 
-  # トップページ・その他ページ
-  root 'homes#top'
-  get 'about', to: 'homes#about'
-  get 'search', to: 'searches#index'
-  get 'mypage', to: 'users#mypage'
+    # ゲストログイン
+    post 'users/guest_sign_in', to: 'users#guest_sign_in', as: 'user_guest_sign_in'
 
-  # ユーザー
-  resources :users, only: [:show, :edit, :update, :destroy]
+    # ユーザー
+    resources :users, only: [:show, :edit, :update, :destroy] do
+      # フォロー
+      resources :follows, only: [:create, :destroy]
+    end
+    resources :follows, only: [:index]
 
-  # 投稿
-  resources :posts do
-    resources :comments, only: [:create, :destroy]
-  end  
+    # 投稿
+    resources :posts do
+      # コメント
+      resources :comments, only: [:create, :destroy]
 
-  # いいね
-  resources :favorites, only: [:index, :create, :destroy]
+      # いいね
+      resources :favorites, only: [:create, :destroy]
+    end
+    resources :favorites, only: [:index]
+  end
 
-  # フォロー
-  resources :follows, only: [:index, :create, :destroy]
-
+  # Admin側
   namespace :admin do
-    # 管理者認証
-    devise_for :admins, only: [:sessions], path: '', path_names: {
-      sign_in: 'sign_in',
-      sign_out: 'sign_out'
-    }
-
-    # 管理者トップ
+    # 管理者トップページ
     root 'homes#top'
 
     # ユーザー管理
@@ -47,5 +52,7 @@ Rails.application.routes.draw do
     resources :posts, only: [:index, :show, :destroy]
   end
 end
+
+
 
 

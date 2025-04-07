@@ -1,4 +1,4 @@
-class HomesController < ApplicationController
+class Public::HomesController  < ApplicationController
   
   def top
     @posts = Post.all # 投稿一覧を取得
