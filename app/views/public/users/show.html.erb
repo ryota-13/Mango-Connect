@@ -2,7 +2,7 @@
 
 <div class="profile-info">
   <div class="profile-image">
-    <%= image_tag @user.image.attached? ? url_for(@user.image) : asset_path('no.image.jpg'), alt: 'プロフィール画像', class: 'img-thumbnail' %>
+    <%= image_tag @user.image.attached? ? url_for(@user.image) : asset_path('no_image .jpg'), alt: 'プロフィール画像', class: 'img-thumbnail' %>
   </div>
   <div class="profile-details">
     <p><strong>自己紹介:</strong> <%= @user.profile.present? ? @user.profile : "自己紹介がありません" %></p>

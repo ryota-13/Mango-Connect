@@ -1,6 +1,6 @@
 <h1>マイページ</h1>
 <div>
-  <%= image_tag current_user.image.attached? ? url_for(current_user.image) : asset_path('no.image.jpg'), alt: 'プロフィール画像' %>
+  <%= image_tag current_user.image.attached? ? url_for(current_user.image) : asset_path('no_image .jpg'), alt: 'プロフィール画像' %>
   <p><%= current_user.name %></p>
   <p><%= current_user.profile %></p>
   <%= link_to 'プロフィール編集', edit_user_path(current_user), class: 'btn btn-primary' %>
@@ -10,7 +10,7 @@
 <%= link_to '新規投稿', new_post_path, class: 'btn btn-success' %>
 <%= render @posts %>
 
-<%= link_to 'いいね一覧', favorites_index_path, class: 'btn btn-info' %>
+<%= link_to 'いいね一覧', favorites_path, class: 'btn btn-info' %>
 
-<%= link_to 'フォロー一覧', follows_index_path, class: 'btn btn-secondary' %>
+<%= link_to 'フォロー一覧', follows_path, class: 'btn btn-secondary' %>
 

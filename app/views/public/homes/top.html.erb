@@ -5,7 +5,7 @@
 
 <!-- マイページボタン -->
 <% if current_user %>
-  <%= link_to 'マイページ', user_path(current_user), class: 'btn btn-secondary' %>
+  <%= link_to 'マイページ', mypage_path(current_user), class: 'btn btn-secondary' %>
 <% end %>
 
 
