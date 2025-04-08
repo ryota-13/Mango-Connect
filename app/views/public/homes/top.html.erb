@@ -5,24 +5,43 @@
 
 <!-- マイページボタン -->
 <% if current_user %>
-  <%= link_to 'マイページ', mypage_path(current_user), class: 'btn btn-secondary' %>
+  <%= link_to 'マイページ', mypage_path(current_user), class: 'btn btn-success' %>
 <% end %>
 
 
 <!-- 投稿一覧 -->
 <h2>投稿一覧</h2>
 
-<% @posts.each do |post| %>
-  <div class="post">
-    <h3><%= link_to post.title, post_path(post) %></h3>
+<div class="row">
+  <% @posts.each do |post| %>
+    <div class="col-md-4 mb-4">
+      <div class="card h-100">
+        <% if post.image.attached? %>
+          <%= image_tag post.image, class: 'card-img-top', style: 'width: 100%; height: 200px; object-fit: contain; background-color: #f8f9fa;' %>
+        <% end %>
+        <div class="card-body">
+          <h5 class="card-title"><%= post.title %></h5>
+          <p class="card-text"><%= truncate(post.body, length: 100) %></p>
+          <% if post.user %>  <!-- userが存在する場合にのみ表示 -->
+            <p class="card-text"><strong>投稿者: </strong><%= post.user.name %></p>
+          <% else %>
+            <p class="card-text"><strong>投稿者情報なし</strong></p>  <!-- userがいない場合 -->
+          <% end %>
+        </div>
+        <div class="card-footer text-muted">
+          <%= link_to '投稿詳細', post_path(post), class: 'btn btn-primary btn-sm' %>
+          <%= link_to 'ユーザー詳細', user_path(post.user), class: 'btn btn-secondary btn-sm' %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
 
-    <% if post.image.attached? %>
-      <!-- 画像があれば表示 -->
-      <%= image_tag post.image, style: "max-width: 300px; height: auto;" %>
-    <% end %>
 
-    <p><%= post.body.truncate(100) %></p>
-    <p>投稿者: <%= post.user.name %></p>
-  </div>
-<% end %>
+
+
+
+
+
+
 
