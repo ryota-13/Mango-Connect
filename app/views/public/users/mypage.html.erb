@@ -1,9 +1,13 @@
 <h1>マイページ</h1>
 <div>
-  <%= image_tag current_user.image.attached? ? url_for(current_user.image) : asset_path('no_image .jpg'), alt: 'プロフィール画像' %>
+  <%= image_tag current_user.image.attached? ? url_for(current_user.image) : asset_path('no_image.jpg'), alt: 'プロフィール画像' %>
   <p><strong>名前：</strong><%= current_user.name %></p>
   <p><strong>自己紹介：</strong><%= current_user.profile %></p>
-  <%= link_to 'プロフィール編集', edit_user_path(current_user), class: 'btn btn-primary' %>
+  <% unless current_user.guest_user? %>
+    <div class="row">
+      <%= link_to 'プロフィール編集', edit_user_path(current_user), class: 'btn btn-primary' %>
+    </div>
+  <% end %>
 </div>
 
 <%= link_to '新規投稿', new_post_path, class: 'btn btn-success' %>
@@ -19,13 +23,17 @@
         <% end %>
         <div class="card-body">
           <h5 class="card-title"><%= post.title %></h5>
-          <p class="card-text"><%= truncate(post.body, length: 100) %></p>
+          <p class="card-text"><%= truncate(post.body, length: 100) %></p> 
+          <p class="card-text">
+            <small>投稿日: <%= post.created_at.in_time_zone("Asia/Tokyo").strftime("%Y年%m月%d日 %H:%M") %></small>
+          </p>
           <%= link_to '投稿詳細を見る', post_path(post), class: 'btn btn-primary' %>
         </div>
       </div>
     </div>
   <% end %>
 </div>
+
 
 
 

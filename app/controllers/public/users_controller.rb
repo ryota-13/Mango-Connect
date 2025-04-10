@@ -1,5 +1,6 @@
 class Public::UsersController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:show]  
+  before_action :ensure_guest_user, only: [:edit]
 
   # マイページ表示
   def mypage
@@ -22,8 +23,10 @@ class Public::UsersController < ApplicationController
   def update
     @user = current_user
     if @user.update(user_params)
-      redirect_to mypage_path, notice: 'プロフィールを更新しました'
+      flash[:notice] = "プロフィールを更新しました"
+      redirect_to mypage_path
     else
+      flash.now[:notice] = "プロフィールの更新に失敗しました"
       render :edit
     end
   end
@@ -32,7 +35,8 @@ class Public::UsersController < ApplicationController
   def destroy
     @user = current_user
     @user.destroy
-    redirect_to root_path, notice: 'アカウントが削除されました'
+    flash[:notice] = "アカウントを削除しました"
+    redirect_to root_path
   end
 
   private
@@ -40,5 +44,14 @@ class Public::UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name, :profile, :email, :password, :password_confirmation, :image)
   end
+
+  def ensure_guest_user
+    @user = User.find(params[:id])
+    if @user.guest_user?
+      flash[:notice] = "ゲストユーザーはプロフィール編集画面へ遷移できません"
+      redirect_to user_path(current_user)
+    end
+  end 
+
 end
 

@@ -1,2 +1,12 @@
 ja:
-  hello: "こんにちは"
+  activerecord:
+    errors:
+      models:
+        post:
+          attributes:
+            title:
+              blank: "は必須です。"
+              too_long: "は最大30文字までです。"
+            body:
+              blank: "は必須です。"
+              too_long: "は最大200文字までです。"

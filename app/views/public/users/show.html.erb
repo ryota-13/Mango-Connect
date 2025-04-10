@@ -2,14 +2,16 @@
 
 <div class="profile-info">
   <div class="profile-image">
-    <%= image_tag @user.image.attached? ? url_for(@user.image) : asset_path('no_image .jpg'), alt: 'プロフィール画像', class: 'img-thumbnail' %>
+    <%= image_tag @user.image.attached? ? url_for(@user.image) : asset_path('no_image.jpg'), alt: 'プロフィール画像', class: 'img-thumbnail' %>
   </div>
   <div class="profile-details">
     <p><strong>自己紹介:</strong> <%= @user.profile.present? ? @user.profile : "自己紹介がありません" %></p>
     <p><strong>Email:</strong> <%= @user.email %></p>
   </div>
   <% if @user == current_user %>
-    <%= link_to 'プロフィール編集', edit_user_path(@user), class: 'btn btn-primary' %>
+    <% unless current_user.guest_user? %>
+      <%= link_to 'プロフィール編集', edit_user_path(@user), class: 'btn btn-primary' %>
+    <% end %>
   <% end %>
 </div>
 
@@ -27,6 +29,9 @@
           <div class="card-body">
             <h5 class="card-title"><%= post.title %></h5>
             <p class="card-text"><%= truncate(post.body, length: 100) %></p>
+            <p class="card-text">
+              <small>投稿日: <%= post.created_at.in_time_zone("Asia/Tokyo").strftime("%Y年%m月%d日 %H:%M") %></small>
+            </p>
             <%= link_to '投稿詳細', post_path(post), class: 'btn btn-info' %>
           </div>
         </div>
@@ -36,5 +41,6 @@
 <% else %>
   <p>このユーザーの投稿はまだありません。</p>
 <% end %>
+
 
 

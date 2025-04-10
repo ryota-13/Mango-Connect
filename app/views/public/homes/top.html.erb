@@ -22,13 +22,10 @@
         <div class="card-body">
           <h5 class="card-title"><%= post.title %></h5>
           <p class="card-text"><%= truncate(post.body, length: 100) %></p>
-          <% if post.user %>  <!-- userが存在する場合にのみ表示 -->
-            <p class="card-text"><strong>投稿者: </strong><%= post.user.name %></p>
-          <% else %>
-            <p class="card-text"><strong>投稿者情報なし</strong></p>  <!-- userがいない場合 -->
-          <% end %>
+          <p class="card-text"><strong>投稿者: </strong><%= post.user.name %></p>
+          <p class="card-text"><small>投稿日: <%= post.created_at.in_time_zone("Asia/Tokyo").strftime("%Y年%m月%d日 %H:%M") %></small></p>
         </div>
-        <div class="card-footer text-muted">
+        <div class="card-footer">
           <%= link_to '投稿詳細', post_path(post), class: 'btn btn-primary btn-sm' %>
           <%= link_to 'ユーザー詳細', user_path(post.user), class: 'btn btn-secondary btn-sm' %>
         </div>
@@ -36,6 +33,7 @@
     </div>
   <% end %>
 </div>
+
 
 
 

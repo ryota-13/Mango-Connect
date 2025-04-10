@@ -1,29 +1,48 @@
-<h1>プロフィール編集</h1>
+<h1 class="text-center">プロフィール編集</h1>
+
 <%= form_for(current_user, url: user_path(current_user), html: { method: :patch, enctype: "multipart/form-data" }) do |f| %>
 
-  <div>
-    <%= f.label :image, "プロフィール画像" %>
-    <%= f.file_field :image %>
-    <% if current_user.image.attached? %>
-      <%= image_tag url_for(current_user.image) %>
-    <% end %>
-  </div>
+  <%= render 'public/users/errors', object: @user %>
 
-  <div>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-  </div>
+  <div class="container d-flex justify-content-center">
+    <div class="col-12 col-md-8">
 
-  <div>
-    <%= f.label :profile %>
-    <%= f.text_area :profile %>
-  </div>
+      <div class="row mb-3">
+        <div class="col-12">
+          <%= f.label :image, "プロフィール画像", class: 'form-label' %>
+          <%= f.file_field :image, class: 'form-control form-control-sm' %>
+          
+          <% if current_user.image.attached? %>
+            <p>現在のプロフィール画像:</p>
+            <%= image_tag url_for(current_user.image), class: 'img-fluid mb-3' %>
+          <% end %>
+        </div>
+      </div>
 
-  <div>
-    <%= f.submit '更新する' %>
+      <div class="row mb-3">
+        <div class="col-12">
+          <%= f.label :name, class: 'form-label' %>
+          <%= f.text_field :name, class: 'form-control form-control-sm' %>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-12">
+          <%= f.label :profile, class: 'form-label' %>
+          <%= f.text_area :profile, class: 'form-control form-control-sm', rows: 3 %>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-12">
+          <%= f.submit '更新する', class: 'btn btn-primary' %>
+        </div>
+      </div>
+    </div>
   </div>
 <% end %>
 
-<%= link_to '戻る', mypage_path %>
-
-<%= link_to '退会する', user_path(current_user), method: :delete, data: { confirm: '本当に退会しますか？' } %>
+<div class="d-flex justify-content-center mt-3">
+  <%= link_to '戻る', mypage_path, class: 'btn btn-secondary mr-2' %>
+  <%= link_to '退会する', user_path(current_user), method: :delete, data: { confirm: '本当に退会しますか？' }, class: 'btn btn-danger' %>
+</div>

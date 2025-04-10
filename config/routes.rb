@@ -6,6 +6,10 @@ Rails.application.routes.draw do
     registrations: 'public/registrations'
   }
 
+  devise_scope :user do
+    post 'users/guest_sign_in', to: 'public/sessions#guest_sign_in', as: 'user_guest_sign_in'  # public/sessions#guest_sign_in に変更
+  end
+
   # 管理者認証
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
     sessions: 'admin/sessions'
@@ -18,9 +22,6 @@ Rails.application.routes.draw do
     get 'about', to: 'homes#about'
     get 'search', to: 'searches#index'
     get 'mypage', to: 'users#mypage'
-
-    # ゲストログイン
-    post 'users/guest_sign_in', to: 'users#guest_sign_in', as: 'user_guest_sign_in'
 
     # ユーザー
     resources :users, only: [:show, :edit, :update, :destroy] do
