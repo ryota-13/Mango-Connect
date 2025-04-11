@@ -5,13 +5,13 @@ class Public::UsersController < ApplicationController
   # マイページ表示
   def mypage
     @user = current_user
-    @posts = @user.posts
+    @posts = @user.posts.page(params[:page]).per(8) 
   end
 
   # ユーザー詳細画面
   def show
     @user = User.find(params[:id])
-    @posts = @user.posts
+    @posts = @user.posts.page(params[:page]).per(8) 
   end
 
   # プロフィール編集画面
