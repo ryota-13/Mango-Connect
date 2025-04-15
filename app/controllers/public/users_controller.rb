@@ -1,6 +1,7 @@
 class Public::UsersController < ApplicationController
   before_action :authenticate_user!, except: [:show]  
   before_action :ensure_guest_user, only: [:edit]
+  before_action :ensure_correct_user, only: [:edit, :update]
 
   # マイページ表示
   def mypage
@@ -52,6 +53,14 @@ class Public::UsersController < ApplicationController
       redirect_to user_path(current_user)
     end
   end 
+
+  def ensure_correct_user
+    @user = User.find(params[:id])
+    unless @user == current_user
+      flash[:alert] = "他のユーザーのプロフィールは編集できません。"
+      redirect_to root_path
+    end
+  end
 
 end
 
