@@ -5,10 +5,10 @@
   <%= render 'errors', object: @post %>
 
   <div class="container d-flex justify-content-center">
-    <div class="col-12 col-md-8"> <!-- フォームの幅を指定 -->
+    <div class="col-12 col-md-8">
     
       <div class="row mb-3">
-        <div class="col-12"> <!-- 画面サイズに応じて幅を調整 -->
+        <div class="col-12">
           <%= f.label :image, '画像（任意）', class: 'form-label' %>
           <%= f.file_field :image, class: 'form-control form-control-sm' %>
         </div>

@@ -5,7 +5,7 @@
   <%= render 'errors', object: @post %>
 
   <div class="container d-flex justify-content-center">
-    <div class="col-12 col-md-8"> <!-- フォームの幅を指定 -->
+    <div class="col-12 col-md-8">
     
       <div class="row mb-3">
         <div class="col-12">
@@ -14,7 +14,7 @@
           
           <% if @post.image.attached? %>
             <p>現在の画像:</p>
-            <%= image_tag @post.image, class: 'img-fluid mb-3' %> <!-- 画像を表示 -->
+            <%= image_tag @post.image, class: 'img-fluid mb-3' %>
           <% end %>
         </div>
       </div>
