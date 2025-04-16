@@ -60,7 +60,6 @@ gem 'kaminari','~> 1.2.1'
 gem 'devise'
 gem 'rails-i18n'
 gem 'devise-i18n'
-gem 'ransack'
 gem 'dotenv-rails'
 group :production do
   gem 'mysql2'

@@ -20,7 +20,7 @@ Rails.application.routes.draw do
     # トップページ・その他ページ
     root 'homes#top'
     get 'about', to: 'homes#about'
-    get 'search', to: 'searches#index'
+    get 'search', to: 'searches#search', as: 'search'
     get 'mypage', to: 'users#mypage'
 
     # ユーザー
