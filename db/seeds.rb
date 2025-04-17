@@ -47,3 +47,7 @@ liam.posts.find_or_create_by!(title: "規格外マンゴーって？") do |post|
   )
 end
 
+Admin.find_or_create_by!(email: "admin@example.com") do |admin|
+  admin.password = "password"
+  admin.password_confirmation = "password"
+end
