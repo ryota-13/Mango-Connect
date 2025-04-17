@@ -34,3 +34,6 @@
     </div>
   </div>
 </div>
+
+<%= render 'public/comments/errors', object: @comment %>
+<%= render partial: "public/comments/comments", locals: { post: @post } %>

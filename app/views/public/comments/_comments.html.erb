@@ -1,0 +1,20 @@
+<hr>
+<h4>コメント一覧</h4>
+
+<% post.comments.each do |comment| %>
+  <div class="mb-2">
+    <strong><%= link_to comment.user.name, user_path(comment.user) %>:</strong>
+    <%= comment.content %>
+    <% if comment.user == current_user %>
+      <%= link_to "削除", post_comment_path(post, comment), method: :delete, data: { confirm: "削除しますか？" }, class: "btn btn-sm btn-danger ms-2" %>
+    <% end %>
+  </div>
+<% end %>
+
+<h4 class="mt-4">コメントを投稿する</h4>
+<%= form_with(model: [post, Comment.new], local: true) do |f| %>
+  <div class="mb-3">
+    <%= f.text_area :content, placeholder: "コメントを入力", rows: 3, class: "form-control" %>
+  </div>
+  <%= f.submit "送信", class: "btn btn-primary" %>
+<% end %>
