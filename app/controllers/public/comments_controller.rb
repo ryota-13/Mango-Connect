@@ -7,13 +7,12 @@ class Public::CommentsController < ApplicationController
     @comment.post = @post
   
     if @comment.save
-      redirect_to post_path(@post)
+      redirect_to post_path(@post), notice: 'コメントを投稿しました。'
     else
-      @comments = @post.comments.includes(:user)
-      render 'public/posts/show'
+      flash[:alert] = 'コメントを入力してください。'
+      redirect_to post_path(@post)
     end
-  end
-  
+  end  
 
   def destroy
     comment = Comment.find(params[:id])

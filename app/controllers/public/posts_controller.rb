@@ -6,16 +6,20 @@ module Public
       @post = Post.new
     end
 
+    def index
+      redirect_to root_path
+    end    
+
     def create
       @post = current_user.posts.build(post_params)
       if @post.save
         flash[:notice] = "投稿に成功しました"
         redirect_to root_path
       else
-        flash.now[:notice] = "投稿に失敗しました"
+        flash.now[:alert] = "投稿に失敗しました"
         render :new
       end
-    end
+    end    
 
     def show
       @post = Post.find(params[:id])
