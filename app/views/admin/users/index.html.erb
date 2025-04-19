@@ -18,9 +18,9 @@
         <td style="width: 120px;">
           <%= link_to admin_user_path(user) do %>
             <% if user.image.attached? %>
-              <%= image_tag user.image, class: "img-thumbnail", style: "width: 100px; height: 100px; object-fit: cover;" %>
+              <%= image_tag user.image, style: "width: 100px; height: 100px; object-fit: cover;" %>
             <% else %>
-              <%= image_tag 'no_image.jpg', class: "img-thumbnail", style: "width: 100px; height: 100px; object-fit: cover;" %>
+              <%= image_tag 'no_image.jpg',style: "width: 100px; height: 100px; object-fit: cover;" %>
             <% end %>
           <% end %>
         </td>

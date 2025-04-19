@@ -1,5 +1,11 @@
 <% if user_signed_in? %>
-  <%= render 'public/searches/searches' %>
+  <div class="container mt-4 mb-4">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <%= render 'public/searches/searches' %>
+      </div>
+    </div>
+  </div>
 <% end %>
 
 <h1 class="mb-4 text-center">Mango Connect - トップページ</h1>

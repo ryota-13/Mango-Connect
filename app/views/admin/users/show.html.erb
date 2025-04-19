@@ -2,10 +2,11 @@
 
 <div class="profile-info d-flex flex-column flex-md-row align-items-center mb-4">
   <div class="profile-image mb-3 mb-md-0 me-md-4 text-center">
-    <%= image_tag @user.image.attached? ? url_for(@user.image) : asset_path('no_image.jpg'),
-        alt: 'プロフィール画像',
-        class: 'img-fluid rounded-circle mb-3',
-        style: 'max-width: 150px; height: 150px; object-fit: cover;' %>
+    <% if @user.image.attached? %>
+      <%= image_tag @user.image, style: 'max-width: 150px; height: 150px; object-fit: cover;' %>
+    <% else %>
+      <%= image_tag 'no_image.jpg',style: 'max-width: 150px; height: 150px; object-fit: cover;' %>
+    <% end %>
   </div>
   
   <div class="profile-details text-md-start">

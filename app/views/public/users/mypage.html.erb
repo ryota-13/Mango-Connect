@@ -1,12 +1,18 @@
 <% if user_signed_in? %>
-  <%= render 'public/searches/searches' %>
+  <div class="container mt-4 mb-4">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <%= render 'public/searches/searches' %>
+      </div>
+    </div>
+  </div>
 <% end %>
 
 <h1 class="mb-4 text-center">マイページ</h1>
 
 <div class="row align-items-center mb-4">
   <div class="col-md-3 text-center">
-    <%= image_tag current_user.image.attached? ? url_for(current_user.image) : asset_path('no_image.jpg'), alt: 'プロフィール画像', class: 'img-fluid rounded-circle mb-3', style: 'max-width: 150px;' %>
+    <%= image_tag current_user.image.attached? ? url_for(current_user.image) : asset_path('no_image.jpg'),class: 'mb-3', style: 'max-width: 150px;' %>
   </div>
   <div class="col-md-9">
     <p><strong>名前：</strong><%= current_user.name %></p>

@@ -9,10 +9,12 @@ class Public::CommentsController < ApplicationController
     if @comment.save
       redirect_to post_path(@post), notice: 'コメントを投稿しました。'
     else
-      flash[:alert] = 'コメントを入力してください。'
+      flash[:alert] = @comment.errors.full_messages.join('、')
       redirect_to post_path(@post)
     end
-  end  
+  end
+  
+   
 
   def destroy
     comment = Comment.find(params[:id])
