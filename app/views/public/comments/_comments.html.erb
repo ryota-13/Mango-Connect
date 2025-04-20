@@ -8,6 +8,9 @@
           <%= link_to comment.user.name, user_path(comment.user) %>
         </h5>
         <p class="card-text"><%= comment.content %></p>
+        <p class="card-text">
+          <%= comment.created_at.strftime("%Y年%m月%d日 %H:%M") %>
+        </p>
         <% if comment.user == current_user %>
           <%= link_to "削除", post_comment_path(post, comment), method: :delete, data: { confirm: "削除しますか？" }, class: "btn btn-outline-danger" %>
         <% end %>

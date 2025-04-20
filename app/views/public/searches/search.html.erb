@@ -16,9 +16,9 @@
           <tr>
             <td>
               <% if user.image.attached? %>
-                <%= image_tag user.image, size: "80x80", class: "rounded-circle" %>
+                <%= image_tag user.image, size: "80x80"%>
               <% else %>
-                <%= image_tag 'no_image.jpg', size: "80x80", class: "rounded-circle" %>
+                <%= image_tag 'no_image.jpg', size: "80x80" %>
               <% end %>
             </td>
             <td>
@@ -44,15 +44,13 @@
             <td>
               <% if post.image.attached? %>
                 <%= image_tag post.image, size: "80x80", style: "object-fit: cover;" %>
-              <% else %>
-                <%= image_tag 'no_image.jpg', size: "80x80", style: "object-fit: cover;" %>
-              <% end %>
+              <% end %>  
             </td>
             <td>
               <%= link_to post.title, post_path(post) %>
             </td>
             <td>
-              <%= truncate(post.body, length: 100) %>
+              <%= post.body %>
             </td>
           </tr>
         <% end %>
