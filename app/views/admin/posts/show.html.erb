@@ -1,0 +1,66 @@
+<h2 class="text-center my-4">投稿詳細</h2>
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-8">
+
+      <% if @post.image.attached? %>
+        <div class="text-center mb-4">
+          <%= image_tag @post.image, style: 'max-height: 400px; object-fit: contain;' %>
+        </div>
+      <% end %>
+
+      <div class="mb-3">
+        <p><strong>タイトル：</strong><%= @post.title %></p>
+      </div>
+
+      <div class="mb-3">
+        <p><strong>本文：</strong><%= @post.body %></p>
+      </div>
+
+      <div class="mb-3">
+        <p>
+          <strong>投稿者：</strong>
+          <%= link_to @post.user.name, admin_user_path(@post.user) %>
+        </p>
+      </div>
+
+      <div class="mb-4">
+        <p>
+          <strong>投稿日：</strong><%= @post.created_at.in_time_zone("Asia/Tokyo").strftime("%Y年%m月%d日 %H:%M") %>
+        </p>
+      </div>
+
+      <h5 class="mb-3">コメント一覧</h5>
+
+      <% if @post.comments.any? %>
+        <div class="mb-4">
+          <% @post.comments.each do |comment| %>
+            <div class="card mb-3">
+              <div class="card-body">
+                <h6 class="card-title mb-2">
+                  <strong><%= comment.user.name %></strong>
+                </h6>
+                <p class="card-text"><%= comment.content %></p>
+                <p class="card-text">
+                  <%= comment.created_at.strftime("%Y年%m月%d日 %H:%M") %>
+                </p>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% else %>
+        <p class="mb-4">コメントはまだありません。</p>
+      <% end %>
+      
+
+      <div class="d-flex justify-content-between">
+        <%= link_to '投稿一覧', admin_posts_path, class: 'btn btn-secondary' %>
+        <%= button_to '投稿を削除', admin_post_path(@post), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn btn-danger' %>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+

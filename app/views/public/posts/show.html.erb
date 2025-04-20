@@ -5,7 +5,7 @@
 
     <% if @post.image.attached? %>
       <div class="mb-3">
-        <%= image_tag @post.image, class: 'img-fluid mb-3' %>
+        <%= image_tag @post.image, class: 'mb-3' %>
       </div>
     <% end %>
 
@@ -14,7 +14,7 @@
     <p><strong>本文:</strong> <%= @post.body %></p>
 
     <p>
-      <strong>投稿者:</strong> <%= link_to @post.user.name, user_path(@post.user), class: 'text-decoration-none' %>
+      <strong>投稿者:</strong> <%= link_to @post.user.name, user_path(@post.user) %>
     </p>
 
     <p>
@@ -35,5 +35,6 @@
   </div>
 </div>
 
-<%= render 'public/comments/errors', object: @comment %>
-<%= render partial: "public/comments/comments", locals: { post: @post } %>
+<div class="mt-4">
+  <%= render partial: "public/comments/comments", locals: { post: @post } %>
+</div>

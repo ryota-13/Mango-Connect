@@ -1,1 +1,36 @@
-<h1>ユーザー一覧管理画面</h1>
+<h2 class="text-center mt-4 mb-4">ユーザー一覧</h2>
+
+<div class="mb-3">
+  <%= link_to 'ダッシュボード', admin_root_path, class: 'btn btn-primary' %>
+</div>
+
+<table class="table table-bordered table-hover  text-center">
+  <thead>
+    <tr>
+      <th>プロフィール画像</th>
+      <th>名前</th>
+      <th>メールアドレス</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td style="width: 120px;">
+          <%= link_to admin_user_path(user) do %>
+            <% if user.image.attached? %>
+              <%= image_tag user.image, style: "width: 100px; height: 100px; object-fit: cover;" %>
+            <% else %>
+              <%= image_tag 'no_image.jpg',style: "width: 100px; height: 100px; object-fit: cover;" %>
+            <% end %>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to user.name, admin_user_path(user) %>
+        </td>
+        <td><%= user.email %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= paginate @users %>

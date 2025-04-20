@@ -1,19 +1,29 @@
-<h2 class="text-center">管理者ダッシュボード</h2>
+<h2 class="text-center  mt-4 mb-4">管理者ダッシュボード</h2>
 
-<div class="container mt-4">
+<div class="container mt-5">
   <div class="row">
 
-    <div class="col-12 col-md-4 mb-3">
-      <%= link_to 'ユーザー一覧管理', admin_users_path, class: 'btn btn-primary btn-lg w-100' %>
+    <div class="col-12 mb-5 text-center">
+      <h4>ユーザー管理</h4>
+      <p>ユーザー一覧を管理し、退会させることができます</p>
+      <%= link_to 'ユーザー一覧管理', admin_users_path, class: 'btn btn-primary', style: 'width: 200px;' %>
     </div>
 
-    <div class="col-12 col-md-4 mb-3">
-      <%= link_to '投稿一覧管理', admin_posts_path, class: 'btn btn-primary btn-lg w-100' %>
+    <div class="col-12 mb-5 text-center">
+      <h4>投稿管理</h4>
+      <p>投稿内容を管理し、不適切な投稿の削除ができます</p>
+      <%= link_to '投稿一覧管理', admin_posts_path, class: 'btn btn-primary', style: 'width: 200px;' %>
     </div>
 
-    <div class="col-12 col-md-4 mb-3">
-      <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: 'btn btn-danger btn-lg w-100' %>
+    <div class="col-12 mb-5 text-center">
+      <h4>ログアウト</h4>
+      <p>管理者としてログアウトします</p>
+      <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: 'btn btn-danger', style: 'width: 200px;' %>
     </div>
+
   </div>
-  
 </div>
+
+
+
+
