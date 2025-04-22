@@ -1,0 +1,8 @@
+<h2>いいねした投稿一覧</h2>
+
+<% @favorites.each do |post| %>
+  <div class="card">
+    <h5><%= link_to post.title, post_path(post) %></h5>
+    <p><%= truncate(post.body, length: 100) %></p>
+  </div>
+<% end %>

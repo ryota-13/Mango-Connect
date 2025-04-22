@@ -21,6 +21,19 @@
       <strong>投稿日:</strong> <%= @post.created_at.in_time_zone("Asia/Tokyo").strftime("%Y年%m月%d日 %H:%M") %>
     </p>
 
+    <div class="mb-3">
+      <% if @post.favorited_by?(current_user) %>
+        <% favorite = current_user.favorites.find_by(post_id: @post.id) %>
+        <%= link_to post_favorite_path(@post, favorite), method: :delete do %>
+          <span>♥ <%= @post.favorites.count %></span>
+        <% end %>
+      <% else %>
+        <%= link_to post_favorites_path(@post), method: :post do %>
+          <span>♡ <%= @post.favorites.count %></span>
+        <% end %>
+      <% end %>
+    </div>
+
     <% if @post.user == current_user %>
       <div class="d-flex">
         <%= link_to '編集', edit_post_path(@post), class: 'btn btn-success mr-2' %>

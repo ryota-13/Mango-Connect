@@ -13,6 +13,22 @@
           <% end %>
           <p class="card-text"><strong>コメント数:</strong> <%= post.comments.count %></p>
           <p class="card-text"><small>投稿日: <%= post.created_at.in_time_zone("Asia/Tokyo").strftime("%Y年%m月%d日 %H:%M") %></small></p>
+          <div class="mt-2">
+            <% if user_signed_in? %>
+              <% if post.favorited_by?(current_user) %>
+                <% favorite = current_user.favorites.find_by(post_id: post.id) %>
+                <%= link_to post_favorite_path(post, favorite), method: :delete do %>
+                  ♥ <%= post.favorites.count %>
+                <% end %>
+              <% else %>
+                <%= link_to post_favorites_path(post), method: :post do %>
+                  ♡ <%= post.favorites.count %>
+                <% end %>
+              <% end %>
+            <% else %>
+                ♡ <%= post.favorites.count %>
+            <% end %>
+          </div>
         </div>
 
         <div class="card-footer bg-white border-0 d-flex justify-content-between">
