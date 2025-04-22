@@ -30,7 +30,7 @@
 
 <h2 class="text-center mb-4">投稿一覧</h2>
 <% if @posts.present? %>
-  <%= render 'public/posts/posts' %>
+  <%= render 'public/posts/posts', posts: @posts %>
 <% else %>
   <p class="text-center">このユーザーの投稿はまだありません。</p>
 <% end %>

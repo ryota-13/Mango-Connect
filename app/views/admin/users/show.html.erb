@@ -21,7 +21,7 @@
 
 <h2 class="text-center mt-4 mb-4">投稿一覧</h2>
 <% if @posts.present? %>
-  <%= render 'admin/posts/posts' %>
+  <%= render 'admin/posts/posts', posts: @posts %>
 <% else %>
   <p class="text-center">このユーザーの投稿はまだありません。</p>
 <% end %>
