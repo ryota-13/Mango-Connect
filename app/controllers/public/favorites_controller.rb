@@ -2,20 +2,24 @@ class Public::FavoritesController < ApplicationController
   before_action :authenticate_user!
 
   def create
-    post = Post.find(params[:post_id])
-    favorite = current_user.favorites.new(post: post)
+    @post = Post.find(params[:post_id])
+    favorite = current_user.favorites.new(post: @post)
     favorite.save
-    redirect_back fallback_location: root_path
+    respond_to do |format|
+      format.js
+    end
   end
-
+  
   def destroy
-    post = Post.find(params[:post_id])
-    favorite = current_user.favorites.find_by(post: post)
+    @post = Post.find(params[:post_id])
+    favorite = current_user.favorites.find_by(post: @post)
     favorite.destroy if favorite
-    redirect_back fallback_location: root_path
-  end
+    respond_to do |format|
+      format.js
+    end
+  end  
 
   def index
-    @favorites = current_user.favorited_posts
-  end
+    @favorites = current_user.favorited_posts.order(created_at: :desc).page(params[:page]).per(16)
+  end  
 end

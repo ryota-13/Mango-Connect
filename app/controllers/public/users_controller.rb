@@ -3,24 +3,20 @@ class Public::UsersController < ApplicationController
   before_action :ensure_guest_user, only: [:edit]
   before_action :ensure_correct_user, only: [:edit, :update]
 
-  # マイページ表示
   def mypage
     @user = current_user
-    @posts = @user.posts.page(params[:page]).per(8) 
+    @posts = @user.posts.order(created_at: :desc).page(params[:page]).per(16)
   end
 
-  # ユーザー詳細画面
   def show
     @user = User.find(params[:id])
-    @posts = @user.posts.page(params[:page]).per(8) 
-  end
+    @posts = @user.posts.order(created_at: :desc).page(params[:page]).per(16)
+  end  
 
-  # プロフィール編集画面
   def edit
     @user = current_user
   end
 
-  # プロフィール更新
   def update
     @user = current_user
     if @user.update(user_params)
@@ -32,7 +28,6 @@ class Public::UsersController < ApplicationController
     end
   end
 
-  # 退会処理
   def destroy
     @user = current_user
     @user.destroy

@@ -8,7 +8,7 @@ class Admin::UsersController < ApplicationController
 
   def show
     @posts = @user.posts
-    @posts = @user.posts.page(params[:page]).per(8)
+    @posts = @user.posts.page(params[:page]).per(16)
   end
 
   def destroy
