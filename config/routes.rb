@@ -26,8 +26,11 @@ Rails.application.routes.draw do
     # ユーザー
     resources :users, only: [:show, :edit, :update, :destroy] do
       # フォロー
-      resources :follows, only: [:create, :destroy]
+      resource :relationships, only: [:create, :destroy]
+      get :followings, on: :member
+      get :followers, on: :member
     end
+  
     resources :follows, only: [:index]
 
     # 投稿

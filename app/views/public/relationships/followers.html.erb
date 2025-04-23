@@ -1,0 +1,2 @@
+<h2><%= @users.first.name if @users.any? %> のフォロワー一覧</h2>
+<%= render "public/users/index", users: @users %>
