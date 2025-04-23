@@ -15,11 +15,17 @@ class Public::RelationshipsController < ApplicationController
 
   def followings
     user = User.find(params[:user_id])
-    @users = user.followings
+    @followings = user.followings
   end
 
   def followers
     user = User.find(params[:user_id])
-    @users = user.followers
+    @followers = user.followers
   end
+
+  def feed
+    @posts = current_user.feed.order(created_at: :desc)
+  end
+  
+
 end

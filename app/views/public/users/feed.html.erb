@@ -1,0 +1,12 @@
+<h2>フィード</h2>
+
+<% if @posts.present? %>
+  <% @posts.each do |post| %>
+    <div class="post">
+      <h3><%= post.title %></h3>
+      <p><%= post.body %></p>
+    </div>
+  <% end %>
+<% else %>
+  <p>まだフォローしているユーザーの投稿はありません。</p>
+<% end %>

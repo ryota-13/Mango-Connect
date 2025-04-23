@@ -1,3 +1,11 @@
-<h2><%= @users.first.name if @users.any? %> のフォロー一覧</h2>
-<%= render "public/users/index", users: @users %>
+<h2>フォローしているユーザー</h2>
 
+<% if @followings.present? %>
+  <% @followings.each do |user| %>
+    <div class="user">
+      <%= user.name %>
+    </div>
+  <% end %>
+<% else %>
+  <p>フォローしているユーザーはまだいません。</p>
+<% end %>

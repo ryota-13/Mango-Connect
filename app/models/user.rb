@@ -44,6 +44,10 @@ class User < ApplicationRecord
     followings.include?(user)
   end
 
+  def feed
+    Post.where(user_id: followings.pluck(:id)) 
+  end
+
   def self.search_for(content, method)
     case method
     when 'perfect'

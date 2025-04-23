@@ -1,2 +1,11 @@
-<h2><%= @users.first.name if @users.any? %> のフォロワー一覧</h2>
-<%= render "public/users/index", users: @users %>
+<h2>自分をフォローしているユーザー</h2>
+
+<% if @followers.present? %>
+  <% @followers.each do |user| %>
+    <div class="user">
+      <%= user.name %>
+    </div>
+  <% end %>
+<% else %>
+  <p>自分をフォローしているユーザーはまだいません。</p>
+<% end %>
