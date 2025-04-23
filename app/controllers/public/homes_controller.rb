@@ -1,8 +1,8 @@
 class Public::HomesController  < ApplicationController
   
   def top
-    @posts = Post.page(params[:page]).per(9) 
-  end
+    @posts = Post.order(created_at: :desc).page(params[:page]).per(16)
+  end  
 
   def about
   end

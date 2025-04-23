@@ -10,6 +10,7 @@
           <p class="card-text"><%= post.body %></p>
           <p class="card-text"><strong>投稿者:</strong> <%= link_to post.user.name, admin_user_path(post.user) %></p>
           <p class="card-text"><strong>コメント数:</strong> <%= post.comments.count %></p>
+          <p class="card-text"><strong>いいね数:</strong> <%= post.favorites.count %></p>
         </div>
         <div class="card-footer bg-white border-0 d-flex justify-content-between">
           <%= link_to '投稿詳細', admin_post_path(post), class: 'btn btn-outline-info btn-sm' %>

@@ -31,6 +31,10 @@
         </p>
       </div>
 
+      <div class="mb-4">
+        <p><strong>いいね数：</strong> <%= @post.favorites.count %></p>
+      </div>
+
       <h5 class="mb-3">コメント一覧</h5>
 
       <% if @post.comments.any? %>
@@ -58,7 +62,6 @@
         <%= link_to '投稿一覧', admin_posts_path, class: 'btn btn-secondary' %>
         <%= button_to '投稿を削除', admin_post_path(@post), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn btn-danger' %>
       </div>
-
     </div>
   </div>
 </div>
