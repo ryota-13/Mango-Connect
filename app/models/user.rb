@@ -1,5 +1,4 @@
 class User < ApplicationRecord
-  # Deviseの設定
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 

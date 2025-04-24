@@ -1,4 +1,4 @@
-<h1 class="text-center mb-4"><%= @user.name %>さんのプロフィール</h1>
+<h1 class="text-center mt-4 mb-4"><%= @user.name %>さんのプロフィール</h1>
 
 <div class="row align-items-center mb-4">
   <div class="col-md-3 text-center">
@@ -8,30 +8,22 @@
   <div class="col-md-9">
       <p><strong>名前：</strong><%= @user.name %></p>
       <p><strong>自己紹介：</strong><%= @user.profile %></p>
+      <p><strong>フォロー：</strong><%= link_to @user.followings.count, user_followings_path(@user)%></p>
+      <p><strong>フォロワー：</strong><%= link_to @user.followers.count, user_followers_path(@user) %></p>
+      <div>
+        <%= render "public/relationships/btn", user: @user %>
+      </div>
 
       <% if @user == current_user && !current_user.guest_user? %>
         <%= link_to 'プロフィール編集', edit_user_path(current_user), class: 'btn btn-primary' %>
       <% end %>  
+    </div>
   </div>
 </div>
 
-<tr>
-  <th>フォロー</th>
-  <td><%= link_to @user.followings.count, user_followings_path(@user) %></td>
-</tr>
-<tr>
-  <th>フォロワー</th>
-  <td><%= link_to @user.followers.count, user_followers_path(@user) %></td>
-</tr>
-<div>
-  <%= render "public/relationships/btn", user: @user, options: { class: "btn-sm" } %>
-</div>
-
-
-
 
 <div class="mb-4">
-  <%= link_to '新規投稿', new_post_path, class: 'btn btn-success me-2' %>
+  <%= link_to '新規投稿', new_post_path, class: 'btn btn-success' %>
 </div>
 
 

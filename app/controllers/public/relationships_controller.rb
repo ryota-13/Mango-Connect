@@ -22,10 +22,6 @@ class Public::RelationshipsController < ApplicationController
     user = User.find(params[:user_id])
     @followers = user.followers
   end
-
-  def feed
-    @posts = current_user.feed.order(created_at: :desc)
-  end
   
 
 end
