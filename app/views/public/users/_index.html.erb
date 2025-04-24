@@ -1,0 +1,6 @@
+<% users.each do |user| %>
+  <div class="user-card">
+    <%= link_to user.name, user_path(user) %>
+    <%= render "relationships/btn", user: user, options: { class: "btn-sm" } %>
+  </div>
+<% end %>

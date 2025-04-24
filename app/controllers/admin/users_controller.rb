@@ -7,9 +7,9 @@ class Admin::UsersController < ApplicationController
   end
 
   def show
-    @posts = @user.posts
+    @user = User.find(params[:id])
     @posts = @user.posts.page(params[:page]).per(16)
-  end
+  end  
 
   def destroy
     @user.destroy

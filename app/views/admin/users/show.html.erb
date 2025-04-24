@@ -13,11 +13,13 @@
     <p><strong>名前：</strong><%= @user.name %></p>
     <p><strong>メールアドレス：</strong><%= @user.email %></p>
     <p><strong>自己紹介：</strong><%= @user.profile %></p>
+    <p><strong>フォロー数：</strong><%= @user.followings.count %></p>
+    <p><strong>フォロワー数：</strong><%= @user.followers.count %></p>
   </div>
 </div>
 
 <%= button_to '退会', admin_user_path(@user), method: :delete, data: { confirm: '本当にこのユーザーを退会させますか？' }, class: 'btn btn-danger mb-4' %> 
-<%= link_to 'ユーザー一覧', admin_users_path, class: 'btn btn-secondary' %>
+<%= link_to 'ユーザー一覧', admin_users_path, class: 'btn btn-primary' %>
 
 <h2 class="text-center mt-4 mb-4">投稿一覧</h2>
 <% if @posts.present? %>

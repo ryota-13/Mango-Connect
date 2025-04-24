@@ -35,6 +35,11 @@ class Public::UsersController < ApplicationController
     redirect_to root_path
   end
 
+  def feed
+    @posts = current_user.feed.order(created_at: :desc)
+  end
+  
+
   private
 
   def user_params

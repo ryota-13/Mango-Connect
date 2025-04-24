@@ -19,19 +19,14 @@
       </div>
 
       <div class="mb-3">
-        <p>
-          <strong>投稿者：</strong>
-          <%= link_to @post.user.name, admin_user_path(@post.user) %>
-        </p>
+        <p><strong>投稿者：</strong><%= link_to @post.user.name, admin_user_path(@post.user) %></p>
       </div>
 
-      <div class="mb-4">
-        <p>
-          <strong>投稿日：</strong><%= @post.created_at.in_time_zone("Asia/Tokyo").strftime("%Y年%m月%d日 %H:%M") %>
-        </p>
+      <div class="mb-3">
+        <p><strong>投稿日：</strong><%= @post.created_at.in_time_zone("Asia/Tokyo").strftime("%Y年%m月%d日 %H:%M") %></p>
       </div>
 
-      <div class="mb-4">
+      <div class="mb-5">
         <p><strong>いいね数：</strong> <%= @post.favorites.count %></p>
       </div>
 
@@ -59,7 +54,7 @@
       
 
       <div class="d-flex justify-content-between">
-        <%= link_to '投稿一覧', admin_posts_path, class: 'btn btn-secondary' %>
+        <%= link_to '投稿一覧', admin_posts_path, class: 'btn btn-primary' %>
         <%= button_to '投稿を削除', admin_post_path(@post), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn btn-danger' %>
       </div>
     </div>

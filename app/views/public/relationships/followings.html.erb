@@ -1,0 +1,36 @@
+<h2 class="text-center mt-4 mb-4">フォロー一覧</h2>
+
+<% if @followings.present? %>
+  <table class="table table-bordered table-hover text-center">
+    <thead>
+      <tr>
+        <th>プロフィール画像</th>
+        <th>名前</th>
+        <th>自己紹介</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @followings.each do |user| %>
+        <tr>
+          <td style="width: 120px;">
+            <% if user.image.attached? %>
+              <%= image_tag user.image, style: "width: 100px; height: 100px; object-fit: cover;" %>
+            <% else %>
+              <%= image_tag "no_image.jpg", style: "width: 100px; height: 100px; object-fit: cover;" %>
+            <% end %>
+          </td>
+          <td><%= user.name %></td>
+          <td><%= user.profile %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p class="text-center">フォローしているユーザーはまだいません。</p>
+<% end %>
+
+
+<div class="mt-4">
+  <%= link_to "マイページ", mypage_path, class: "btn btn-secondary" %>
+  <%= link_to "トップページ", root_path, class: "btn btn-primary" %>
+</div>

@@ -22,24 +22,28 @@ Rails.application.routes.draw do
     get 'about', to: 'homes#about'
     get 'search', to: 'searches#search', as: 'search'
     get 'mypage', to: 'users#mypage'
-
+    get 'feed', to: 'users#feed', as: 'feed'
     # ユーザー
     resources :users, only: [:show, :edit, :update, :destroy] do
-      # フォロー
-      resources :follows, only: [:create, :destroy]
+      # フォロー・フォロワー関連
+      resource :relationships, only: [:create, :destroy] 
+      get "followings", to: "relationships#followings", as: "followings"  # フォロー一覧
+      get "followers", to: "relationships#followers", as: "followers"  # フォロワー一覧
     end
-    resources :follows, only: [:index]
 
+    resources :follows, only: [:index] 
+  
     # 投稿
     resources :posts do
       # コメント
       resources :comments, only: [:create, :destroy]
-
+  
       # いいね
       resources :favorites, only: [:create, :destroy]
     end
     resources :favorites, only: [:index]
   end
+  
 
   # Admin側
   namespace :admin do
