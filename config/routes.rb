@@ -54,7 +54,9 @@ Rails.application.routes.draw do
     resources :users, only: [:index, :show, :destroy]
 
     # 投稿管理
-    resources :posts, only: [:index, :show, :destroy]
+    resources :posts, only: [:index, :show, :destroy] do
+      resources :comments, only: [:destroy]
+    end  
   end
 end
 

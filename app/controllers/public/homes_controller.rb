@@ -1,9 +1,19 @@
-class Public::HomesController  < ApplicationController
-  
-  def top
-    @posts = Post.order(created_at: :desc).page(params[:page]).per(16)
-  end  
+module Public
+ class Public::HomesController  < ApplicationController
+    
+    def top
+      if params[:latest]
+        @posts = Post.latest.page(params[:page]).per(16)
+      elsif params[:old]
+        @posts = Post.old.page(params[:page]).per(16)
+      elsif params[:most_favorited]
+        @posts = Post.most_favorited.page(params[:page]).per(16)
+      else
+        @posts = Post.latest.page(params[:page]).per(16)
+      end
+    end
 
-  def about
+    def about
+    end
   end
 end

@@ -32,13 +32,11 @@
     </div>
 
     <% if @post.user == current_user %>
-      <div class="d-flex">
         <%= link_to '編集', edit_post_path(@post), class: 'btn btn-success mr-2' %>
         <%= link_to '削除', post_path(@post), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn btn-danger' %>
-      </div>
     <% end %>
 
-    <div class="d-flex justify-content-between mt-3">
+    <div class="d-flex justify-content-between mt-4">
       <%= link_to 'トップページ', root_path, class: 'btn btn-primary' %>
       <%= link_to 'マイページ', mypage_path, class: 'btn btn-secondary' %> 
     </div>
