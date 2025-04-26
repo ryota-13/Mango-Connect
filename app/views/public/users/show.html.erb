@@ -2,7 +2,11 @@
 
 <div class="row align-items-center mb-4">
   <div class="col-md-3 text-center">
-    <%= image_tag @user.image.attached? ? url_for(@user.image) : asset_path('no_image.jpg'),class: 'mb-3', style: 'max-width: 150px;' %>
+    <% if @user.image.attached? %>
+      <%= image_tag url_for(@user.image), class: 'mb-3', style: 'max-width: 150px;' %>
+    <% else %>
+      <%= image_tag 'no_image.jpg', class: 'mb-3', style: 'max-width: 150px;' %>
+    <% end %>
   </div>
   
   <div class="col-md-9">

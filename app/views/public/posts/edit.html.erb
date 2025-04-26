@@ -14,7 +14,7 @@
           
           <% if @post.image.attached? %>
             <p>現在の画像:</p>
-            <%= image_tag @post.image, class: 'mb-3' %>
+            <%= image_tag @post.image, class: 'img-fluid mb-3' %>
           <% end %>
         </div>
       </div>

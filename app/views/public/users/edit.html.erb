@@ -35,6 +35,27 @@
 
       <div class="row mb-3">
         <div class="col-12">
+          <%= f.label :email, "メールアドレス", class: 'form-label' %>
+          <%= f.email_field :email, value: current_user.email, class: 'form-control form-control-sm' %>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-12">
+          <%= f.label :password, "パスワード", class: 'form-label' %>
+          <%= f.password_field :password, class: 'form-control form-control-sm' %>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-12">
+          <%= f.label :password_confirmation, "パスワード確認", class: 'form-label' %>
+          <%= f.password_field :password_confirmation, class: 'form-control form-control-sm' %>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-12">
           <%= f.submit '更新する', class: 'btn btn-primary' %>
         </div>
       </div>
