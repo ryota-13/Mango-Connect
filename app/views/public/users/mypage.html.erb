@@ -12,8 +12,13 @@
 
 <div class="row align-items-center mb-4">
   <div class="col-md-3 text-center">
-    <%= image_tag current_user.image.attached? ? url_for(current_user.image) : asset_path('no_image.jpg'),class: 'mb-3', style: 'max-width: 150px;' %>
+    <% if current_user.image.attached? %>
+      <%= image_tag url_for(current_user.image), class: 'mb-3', style: 'max-width: 150px;' %>
+    <% else %>
+      <%= image_tag 'no_image.jpg', class: 'mb-3', style: 'max-width: 150px;' %>
+    <% end %>
   </div>
+  
   <div class="col-md-9">
     <p><strong>名前：</strong><%= current_user.name %></p>
     <p><strong>自己紹介：</strong><%= current_user.profile %></p>

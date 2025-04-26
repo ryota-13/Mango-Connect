@@ -1,4 +1,18 @@
+<% if user_signed_in? %>
+  <div class="container mt-4 mb-4">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <%= render 'public/searches/searches' %>
+      </div>
+    </div>
+  </div>
+<% end %>
+
 <h2 class="text-center mt-4 mb-4">いいねした投稿一覧</h2>
+
+<div class="mt-4 mb-4">
+  <%= link_to 'マイページ', mypage_path, class: 'btn btn-primary' %>
+</div>
 
 <div class="row">
   <% @favorites.each do |post| %>
@@ -40,8 +54,4 @@
 
 <div class="d-flex justify-content-center">
   <%= paginate @favorites %>
-</div>
-
-<div class="text-center mt-4">
-  <%= link_to 'マイページ', mypage_path, class: 'btn btn-primary' %>
 </div>

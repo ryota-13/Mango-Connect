@@ -1,12 +1,11 @@
 ja:
   activerecord:
-    errors:
-      models:
-        post:
-          attributes:
-            title:
-              blank: "は必須です。"
-              too_long: "は最大30文字までです。"
-            body:
-              blank: "は必須です。"
-              too_long: "は最大200文字までです。"
+    attributes:
+      user:
+        name: 名前
+      post:
+        title: タイトル
+        body: 本文
+      comment:
+        content: コメント  
+

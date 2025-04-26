@@ -8,7 +8,7 @@
   </div>
 <% end %>
 
-<h1 class="mb-4 text-center">Mango Connect</h1>
+<h1 class="mb-4 mt-4 text-center">Mango Connect</h1>
 
 <div class="mb-4">
   <% if current_user %>
@@ -17,7 +17,14 @@
   <% end %>
 </div>
 
-<h2 class="mb-4">投稿一覧</h2>
+<h2 class="mt-4 mb-4">投稿一覧</h2>
+
+<div class="text-center mb-4">
+  <%= link_to '新しい順', root_path(latest: "true"), class: 'btn btn-outline-primary' %>
+  <%= link_to '古い順', root_path(old: "true"), class: 'btn btn-outline-secondary' %>
+  <%= link_to 'いいね順', root_path(most_favorited: "true"), class: 'btn btn-outline-success' %>
+</div>
+
 <%= render 'public/posts/posts', posts: @posts %>
 
 
