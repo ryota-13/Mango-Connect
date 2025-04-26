@@ -33,8 +33,8 @@ end
 olivia.posts.find_or_create_by!(title: "マンゴーの魅力") do |post|
   post.body = "宮崎のマンゴー、本当に最高！"
   post.image.attach(
-    io: File.open("#{Rails.root}/db/fixtures/no_image.jpg"),
-    filename: "no_image.jpg"
+    io: File.open("#{Rails.root}/db/fixtures/background.jpg"),
+    filename: "background.jpg"
   )
 end
 
@@ -42,8 +42,8 @@ end
 liam.posts.find_or_create_by!(title: "規格外マンゴーって？") do |post|
   post.body = "少し形が悪くても味は抜群。安くておいしい！"
   post.image.attach(
-    io: File.open("#{Rails.root}/db/fixtures/no_image.jpg"),
-    filename: "no_image.jpg"
+    io: File.open("#{Rails.root}/db/fixtures/mango.jpg"),
+    filename: "mango.jpg"
   )
 end
 

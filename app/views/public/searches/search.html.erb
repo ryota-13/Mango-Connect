@@ -1,4 +1,14 @@
-<h2 class="mb-4 text-center">検索結果</h2>
+<% if user_signed_in? %>
+  <div class="container mt-4 mb-4">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <%= render 'public/searches/searches' %>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<h2 class="mt-4 mb-4 text-center">検索結果</h2>
 
 <% if @records.present? %>
   <h3><%= @model == 'user' ? "ユーザー" : "投稿" %>の検索結果 for "<%= @content %>"</h3>
