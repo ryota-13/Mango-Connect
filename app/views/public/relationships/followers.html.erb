@@ -29,8 +29,8 @@
               <%= image_tag "no_image.jpg", style: "width: 100px; height: 100px; object-fit: cover;" %>
             <% end %>
           </td>
-          <td><%= user.name %></td>
-          <td><%= user.profile.presence || "自己紹介文がまだありません。" %></td>
+          <td><%= link_to user.name, user_path(user) %></td>
+          <td><%= user.profile %></td>
         </tr>
       <% end %>
     </tbody>
