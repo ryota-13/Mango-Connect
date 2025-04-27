@@ -39,6 +39,7 @@
 
 <div class="mb-4">
   <%= link_to '新規投稿', new_post_path, class: 'btn btn-success' %>
+  <%= link_to 'トップページ', root_path, class: 'btn btn-primary' %>
 </div>
 
 
@@ -48,7 +49,3 @@
 <% else %>
   <p class="text-center">このユーザーの投稿はまだありません。</p>
 <% end %>
-
-<div class=" text-center mt-3">
-  <%= link_to 'トップページ', root_path, class: "btn btn-primary" %>
-</div>
