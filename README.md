@@ -39,20 +39,20 @@
 
 ![ER図](er_diagram.jpg)
 
+- AWS構成図  
+
+![AWS構成図](aws_architecture_diagram.jpg)
+
 ## 開発環境
-- OS：Linux(CentOS)
-- 言語：HTML,CSS,JavaScript,Ruby,SQL
+- OS：Linux（CentOS）
+- 使用言語：HTML / CSS / JavaScript / Ruby / SQL
 - フレームワーク：Ruby on Rails
-- JSライブラリ：jQuery
+- ライブラリ：jQuery
 - IDE：Cloud9
 ​
-## 使用素材
-以下のフリー素材を使用しています。  
+### 使用素材
+以下のフリー素材を使用しています。
 
-### **画像素材**  
-- **ぱくたそ**（https://www.pakutaso.com/#google_vignette）  
-- **O-DAN**（https://o-dan.net/ja/）  
-
-### **アイコン素材**  
-- **FontAwesome**（https://fontawesome.com/icons） 
+#### アイコン素材
+- FontAwesome（https://fontawesome.com/icons）
 　
