@@ -47,8 +47,9 @@ Rails.application.routes.draw do
 
   # Admin側
   namespace :admin do
-    # 管理者トップページ
+    # 管理者トップページ・その他ページ
     root 'homes#top'
+    get 'search', to: 'searches#search', as: 'search'
 
     # ユーザー管理
     resources :users, only: [:index, :show, :destroy]
