@@ -1,3 +1,13 @@
+<% if admin_signed_in? %>
+  <div class="container mt-4 mb-4">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <%= render 'admin/searches/searches' %>
+      </div>
+    </div>
+  </div>
+<% end %>
+
 <h2 class="text-center mt-4 mb-4">ユーザー一覧</h2>
 
 <div class="mb-3">

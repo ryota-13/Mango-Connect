@@ -1,0 +1,16 @@
+<%= form_with url: admin_search_path, method: :get, local: true, html: { class: "d-flex flex-wrap align-items-center" } do |f| %>
+  <div class="form-group m-1">
+    <%= f.text_field :content, class: "form-control form-control-sm", placeholder: "検索ワード" %>
+  </div>
+  <div class="form-group m-1">
+    <%= f.select :model, options_for_select({ "ユーザー" => "user", "投稿" => "post" }, params[:model]), {}, class: "form-control form-control-sm" %>
+  </div>
+  <div class="form-group m-1">
+    <%= f.select :method, options_for_select({ "完全一致" => "perfect", "前方一致" => "forward", "後方一致" => "backward", "部分一致" => "partial" }, params[:method]), {}, class: "form-control form-control-sm" %>
+  </div>
+  <div class="form-group m-1 ms-auto">
+    <%= button_tag(type: 'submit', class: 'btn btn-primary btn-sm') do %>
+      <i class="fa-solid fa-magnifying-glass"></i>
+    <% end %>
+  </div>
+<% end %>
