@@ -8,7 +8,7 @@
   </div>
 <% end %>
 
-<h2 class="text-center mt-4 mb-4">フォロー一覧</h2>
+<h2 class="text-center mt-4 mb-4"><%= @user.name %>さんがフォローしているユーザー一覧</h2>
 
 <% if @followings.present? %>
   <table class="table table-bordered table-hover text-center">
@@ -36,7 +36,7 @@
     </tbody>
   </table>
 <% else %>
-  <p class="text-center">フォローしているユーザーはまだいません。</p>
+  <p class="text-center"><%= @user.name %>さんがフォローしているユーザーはいません。</p>
 <% end %>
 
 
